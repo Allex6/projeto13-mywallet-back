@@ -1,5 +1,4 @@
 import getToken from "../utils/getToken.js";
-import { db } from './../db/mongo.js';
 
 export default async function(req, res, next){
 
@@ -9,7 +8,7 @@ export default async function(req, res, next){
     const token = getToken(authorization);
     if(!token) return res.sendStatus(401);
 
-    const sessionsCollection = db.collection('sessions');
+    const sessionsCollection = req.db.collection('sessions');
     const findResult = await sessionsCollection.findOne({ token });
     if(!findResult) return res.sendStatus(401);
 
