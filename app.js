@@ -11,12 +11,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/teste', (req, res, next)=>{
-
-    res.send('OK');
-
-});
-
 app.use(authRoutes);
 app.use(transactionsRoutes);
 
