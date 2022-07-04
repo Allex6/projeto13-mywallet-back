@@ -17,6 +17,7 @@ const client = new MongoClient(MONGO_URI, { useNewUrlParser: true, useUnifiedTop
 let db;
 
 client.connect(err => {
+    console.log('err ---------------------------', err);
   db = client.db(DB_NAME);
 });
 
