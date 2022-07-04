@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import transactionSchema from "../schemas/transactionSchema.js";
 import handleJoiErrors from './../utils/handleJoiErrors.js';
-import { db } from './../db/mongo.js';
 
 export default async function(req, res, next){
 
@@ -26,7 +25,7 @@ export default async function(req, res, next){
             userId
         };
 
-        const transactionsCollection = db.collection('transactions');
+        const transactionsCollection = req.db.collection('transactions');
         await transactionsCollection.insertOne(transactionData);
 
         res.sendStatus(200);

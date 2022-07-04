@@ -7,7 +7,7 @@ const DB_NAME = process.env.DB_NAME || 'my_wallet';
 
 console.log('MONGO URI ', MONGO_URI, DB_NAME);
 
-const mongoClient = new MongoClient(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoClient = new MongoClient(MONGO_URI);
 let db;
 
 mongoClient.connect(() => db = mongoClient.db(DB_NAME));

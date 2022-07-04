@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
 import userSchema from './../schemas/userSchema.js';
 import handleJoiErrors from './../utils/handleJoiErrors.js';
-import { db } from './../db/mongo.js';
 
 async function register(req, res, next){
 
@@ -22,7 +21,7 @@ async function register(req, res, next){
 
     try {
 
-        const usersCollection = db.collection('users');
+        const usersCollection = req.db.collection('users');
 
         const findResult = await usersCollection.findOne({ email });
 
@@ -53,8 +52,8 @@ async function login(req, res, next){
 
     try {
         
-        const usersCollection = db.collection('users');
-        const sessionsCollection = db.collection('sessions');
+        const usersCollection = req.db.collection('users');
+        const sessionsCollection = req.db.collection('sessions');
         const defaultMessage = 'Verifique se digitou email e senha corretos.';
 
         const user = await usersCollection.findOne({ email });

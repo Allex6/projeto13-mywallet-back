@@ -1,5 +1,4 @@
 import getToken from "../utils/getToken.js";
-import { db } from './../db/mongo.js';
 
 export default async function(req, res, next){
 
@@ -8,7 +7,7 @@ export default async function(req, res, next){
 
     try {
         
-        const sessionsCollection = db.collection('sessions');
+        const sessionsCollection = req.db.collection('sessions');
         await sessionsCollection.deleteOne({ token });
         res.sendStatus(200);
 
